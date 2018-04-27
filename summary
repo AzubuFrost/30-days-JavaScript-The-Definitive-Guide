@@ -28,3 +28,4 @@ CHAPTER 2
     `var s = 'test';
     s.len = 4;
     var t = s.len` //undefined
+6.
