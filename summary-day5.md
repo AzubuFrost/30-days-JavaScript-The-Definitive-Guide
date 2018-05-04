@@ -1,22 +1,18 @@
-// demo01
+## CHAPTER6
+1. getter setter：由getter 和 setter定义的属性乘坐存储器属性，不同于数据属性，数据属性只有一个简单的值；## 存储器属性不具有可写性。
+    ```
+        //定义存取器属性简单方法
+        var o = {
+            //数据属性
+            data_prop:value,
+            //存取器属性
+            get accessor_prop() {},
+            set accessor_prop(value) {}
+        }
 
-var fn;
-function foo() {
-    var a = 2;
-    function baz() {
-        console.log( a );
-    }
-    fn = baz;
-}
-function bar() {
-    fn();
-}
-
-foo();
-bar(); // 2
-
-
-//getter and setter 
+    ```
+2. 存取器属性是可以继承的：
+    ```
 var p = {
     x : 1.0,
     y : 2.0,
@@ -47,14 +43,5 @@ var q = inherit(p);
 q.x = 1, q.y = 1;
 console.log(q.r);
 console.log(q.theta);
+    ```
 
-//存取器属性，智能检测属性的写入值以及在每次属性读取时返回不同值
-var serialnum = {
-    $n: 0,
-    // 返回当前值，然后自增
-    get next() {return this.$n++;},
-    set next(n) {
-        if(n >= this.$n) this.$n = n;
-        else throw "序列号的值不能比当前值小";
-    }
-}
