@@ -37,4 +37,11 @@
 ```
     由于for/in循环可以以不同的循序遍历对象的属性，而且如果数组同时拥有对象属性和数组元素，返回的属性名很可能是按照创建的顺序而非数值的大小顺序。所以最好不要使用for/in
 
-5. 
+5. 会改变原有数组的API: splice, reverse,pop, push, shift, unshift
+    unshift中参数是一次性插入的，这意味着最终的数组中插入的元素的顺序和他们在参数列表中的顺序一致
+    ```javascript
+        var a = [];
+        a.unshift(1,2,3,4);//a:[1,2,3,4]而不是a:[4,3,2,1]
+    ```
+
+6. every和some确认该返回什么值他们就会停止遍历数组 some 判定返回true后就返回true，every 判定false就返回
