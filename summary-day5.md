@@ -72,3 +72,23 @@
             }
         });
     ```
+
+8. 对象的原型属性在实例对象之初设置好的。对象直接量时直接使用Object.prototype；通过new的时候使用构造函数的prototype属性作为原型，通过Object.create()使用第一个参数作为他们的原型。
+
+9. 查询原型的方法：Object.getPrototypeOf()(ES5);o.constructor.prototype检测原型。通过new表达式创建的对象，通常继承一constructor属性来指代构造函数，这种检测并不可靠。
+```javascript
+    var a ={ x : 1 };
+    var p = Object.create(a);
+    p.constructor.prototype; /*Object*/
+    Object.getPrototypeOf(p) //{ x : 1 }
+```
+
+10. isPrototypeOf用来检查是否在原型链上
+
+11. 可扩展性
+    * 所有内置对象和自定义对象默认下是显式可扩展，判断对象可扩展用Object.isExtensible();Object.isSealed();Object.isFrozen()
+    * 转换对象为不可扩展:Object.preventExtensions() => 方法让一个对象变的不可扩展，也就是永远不能再添加新的属性
+    * Obejct.seal方法封闭一个对象，阻止添加新属性并将所有现有属性标记为不可配置。当前属性的值只要可写就可以改变。
+    * Object.freeze() 方法可以冻结一个对象，冻结指的是不能向这个对象添加新的属性，不能修改其已有属性的值，不能删除已有属性，以及不能修改该对象已有属性的可枚举性、可配置性、可写性。也就是说，这个对象永远是不可变的。该方法返回被冻结的对象。
+
+12. 
