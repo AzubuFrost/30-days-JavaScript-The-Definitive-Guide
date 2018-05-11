@@ -58,3 +58,19 @@ var serialnum = {
         else throw "序列号的值不能比当前值小";
     }
 }
+// 对于this的理解
+var o = {
+    x:1,
+    a: function(){
+
+            function b(){
+                function c(){
+                    console.log(this.x);
+            }
+           c();
+        }
+        b();
+    }
+}
+
+o.a();
