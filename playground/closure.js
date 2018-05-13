@@ -7,3 +7,4 @@ function constfuncs(){
 
 var funcs = constfuncs();
 funcs[5]();
+
