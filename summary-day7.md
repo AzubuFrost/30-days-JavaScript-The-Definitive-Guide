@@ -6,4 +6,20 @@
 
 3. callee指代当前正在执行的函数。caller指代调用当前正在执行的函数的函数
 
+4. javascript中的函数并不是原始值，而是一种特殊的对象，也就是说函数可万一拥有属性。当函数需要一个静态变量来再调用是保持某个值不变，最方便的方式就是给函数定义属性，而不是定义全局变量.
+```javascript
+    //计算阶乘，并将结果缓存至函数的属性中
+    function factorial(n){
+        if(isFinite(n) && n>0 && n == Math.round(n)){
+            if(!(n in factorial)){
+                factorial[n] = n* factorial(n-1);
+            }
+            return factorial[n];
+        }
+        else return NaN;
+    }
+    factorial[1] = 1;
+    //初始化缓存以保存这种基本情况，利用递归
+```
 
+5. 
