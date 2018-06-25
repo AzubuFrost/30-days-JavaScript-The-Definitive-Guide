@@ -90,3 +90,52 @@
     var friend =new  Person("a","b");
     
 ````
+3. 继承
+````javascript
+    //原型链继承
+    function Person(name){
+        this.name = name || "";
+    }
+
+    function Man(age){
+        this.age = age || 0;
+    }
+
+    Man.prototype = new Person();
+    //借用构造函数继承  
+    function Person(name){
+        this.name = name;
+    }
+    function Man(age){
+        Person.call(this,"");
+        this.age = age;
+    }
+    //组合继承
+    function Person(name){
+        this.name = name;
+    }
+    Person.prototype.sayName = function(){console.log(this.name)};
+    function Man(age ){
+        Person.call(this,"");
+        this.age = age;
+    }
+    Man.prototype = new Person("");
+    Man.prototype.sayAge = function (){console.log(this.age)};
+    var jack = new Man(16);
+    //寄生式组合继承
+    function Person(name){
+        this.name = name;
+    }
+    Person.prototype.sayName = function (){console.log(this.name)};
+    function Man(age){
+        Person.call(this,"");
+        this.age = age;
+    }
+    (inheritPrototype(Man,Person){
+        var prototype = Object.create(Person.prototype);
+        prototype.constructor = Man;
+        Man.prototype = prototype;
+
+    })(Man,Person);
+    Man.prototype.sayAge = function(){console.log(this.age);}
+````
