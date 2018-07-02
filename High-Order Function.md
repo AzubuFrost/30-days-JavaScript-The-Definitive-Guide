@@ -54,4 +54,22 @@ function plus(num){
     return adder()(num);
 }
 ````
+3. DEBOUNCE AND THROTTLE
+函数去抖和函数节流两种方法是为了应用于类似mousemove此类事件触发太过频繁。
 
+````javascript
+    function debounce(fn,delay){
+        delay = delay || 200;
+        var timer;
+        return function(){
+            var that = this;
+            var arg = arguments;
+            if(timer)
+                clearTimeout(timer);
+            timer = setTimeout(function(){
+                timer = null;//释放内存好评！
+                fn.apply(that,arg);
+            },delay);
+        };
+    }
+````
