@@ -56,7 +56,7 @@ function plus(num){
 ````
 3. DEBOUNCE AND THROTTLE
 函数去抖和函数节流两种方法是为了应用于类似mousemove此类事件触发太过频繁。
-
+去抖的意思是防止重复调用，也就是说事件最后调用；节流的意思是防止调用次数太多，每隔interval事件调用一次
 ````javascript
     function debounce(fn,delay){
         delay = delay || 200;
@@ -70,6 +70,27 @@ function plus(num){
                 timer = null;//释放内存好评！
                 fn.apply(that,arg);
             },delay);
+        };
+    }
+
+    function throttle(fn,interval = 200){
+        var last;
+        var timer;
+        return function(){
+            var that = this;
+            var arg = arguments;
+            var now = +new Date();
+            if(last && now - last < interval){
+                clearTimeout(timer);
+                timer = setTimeout(function(){
+                    last = now;
+                    fn.apply(that,arg);
+                },interval);
+            }
+            else {
+                last = now;
+                fn.apply(that,arg);
+            }
         };
     }
 ````
