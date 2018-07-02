@@ -38,4 +38,20 @@ function curry(fn){
     }(arr.concat(innerArgs))
   }
 }
+
+//通用叠加柯里化
+function plus(num){
+    var adder = function(){
+        var args = [];
+        var innerAdder = function(){
+            args = args.concat([].slice.call(arguments));
+            return innerAdder;
+        };
+        innerAdder.toString = function(){
+            return args.reduce(function(a,b){return a+b;})
+        };
+    }
+    return adder()(num);
+}
 ````
+
