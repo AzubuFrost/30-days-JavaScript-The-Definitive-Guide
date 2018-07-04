@@ -93,4 +93,28 @@
            }
             
         }
+
+    class EventEmitter {
+        constructor(){
+            this.messageBox = {};
+        }
+        on(event,func){
+            const callbacks= this.messageBox[event] || [];
+            callbacks.push(func);
+            this.messageBox[eventName] = callbacks;
+        }
+        emit(event,...args){
+            const callbacks = this.messageBox[event];
+            callbacks.forEach(function(callback){
+                callback(...args);
+            })
+        }
+        off(eventName, func) {
+            const callbacks = this.messageBox[eventName];
+            const index = callbacks.indexOf(func);
+        if (index !== -1) {
+            callbacks.splice(index, 1);
+        }
+    }
+    }
     ````

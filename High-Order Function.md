@@ -45,7 +45,7 @@ function plus(num){
         var args = [];
         var innerAdder = function(){
             args = args.concat([].slice.call(arguments));
-            return innerAdder;
+            return innerAdder;5
         };
         innerAdder.toString = function(){
             return args.reduce(function(a,b){return a+b;})
